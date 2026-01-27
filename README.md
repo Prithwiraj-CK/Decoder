@@ -2,6 +2,14 @@
 
 A modern, cyberpunk-themed Web3 website for SOL Decoder - Advanced DeFi automation tools for Solana.
 
+## ✨ Latest Updates
+
+- ✅ Added real product logos (Valhalla, Olympus, Decoder Farmer)
+- ✅ Added Pricing page with SOL-based subscription plans
+- ✅ Updated all buttons to working hyperlinks
+- ✅ Horizontal footer layout
+- ✅ All links now functional with proper destinations
+
 ## Features
 
 - 🎨 Distinctive cyberpunk/Web3 aesthetic with animated backgrounds
@@ -11,6 +19,30 @@ A modern, cyberpunk-themed Web3 website for SOL Decoder - Advanced DeFi automati
 - 🎯 Optimized performance
 - 🌈 Gradient animations and glowing effects
 - 💫 Particle effects on mouse movement
+- 🖼️ Real product logos integrated
+- 💰 Complete pricing section
+
+## Quick Links
+
+All buttons and links are now functional:
+
+### Navigation
+- **Join Discord**: https://discord.gg/7PRvrGZrVq
+- **Twitter**: https://x.com/SOL_Decoder
+
+### Hero Section
+- **Start Today**: https://blinkord.com/925207817923743794
+- **View Docs**: https://decoder-1.gitbook.io/decoder-farmer/
+
+### Tools Section
+- **Valhalla Bot - Start Free**: https://discord.gg/7PRvrGZrVq
+- **Olympus Bot - Get Started**: https://blinkord.com/925207817923743794
+- **Decoder Farmer - Read More**: https://decoder-1.gitbook.io/decoder-farmer/
+- **Perps DEX - Read More**: https://decoder-1.gitbook.io/decoder-farmer/farms/delta-neutral-lighter-and-paradex
+
+### Pricing
+- **Monthly (0.59 SOL)**: https://blinkord.com/925207817923743794
+- **Quarterly (1.6 SOL)**: https://blinkord.com/925207817923743794
 
 ## Tech Stack
 
@@ -24,17 +56,21 @@ A modern, cyberpunk-themed Web3 website for SOL Decoder - Advanced DeFi automati
 ## File Structure
 
 ```
-├── index.html          # Main HTML file
-├── styles.css          # Complete CSS styling
-├── script.js           # Vanilla JavaScript interactions
-├── App.jsx             # React main component
-├── App.css             # React CSS styling
-└── components/         # React components
+├── index.html              # Main HTML file
+├── styles.css              # Complete CSS styling
+├── script.js               # Vanilla JavaScript interactions
+├── App.jsx                 # React main component
+├── App.css                 # React CSS styling
+├── DecoderLogo.jpg         # Decoder/Farmer logo
+├── OlympusLogo.jpg         # Olympus bot logo
+├── valhallaLogo.png        # Valhalla bot logo
+└── components/             # React components
     ├── BackgroundEffects.jsx
     ├── Navigation.jsx
     ├── Hero.jsx
     ├── Tools.jsx
     ├── Benefits.jsx
+    ├── Pricing.jsx         # NEW!
     ├── Security.jsx
     ├── CTA.jsx
     └── Footer.jsx
@@ -45,7 +81,8 @@ A modern, cyberpunk-themed Web3 website for SOL Decoder - Advanced DeFi automati
 ### Vanilla HTML/CSS/JS Version
 
 1. Open `index.html` in your browser
-2. No build process required!
+2. All logos and links are ready to use!
+3. No build process required!
 
 ### React Version
 
@@ -59,6 +96,7 @@ cd sol-decoder
 - Replace `src/App.js` with `App.jsx`
 - Replace `src/App.css` with `App.css`
 - Copy all files from `components/` to `src/components/`
+- Copy all logo images (DecoderLogo.jpg, OlympusLogo.jpg, valhallaLogo.png) to `public/`
 
 3. Install dependencies (if needed):
 ```bash
@@ -69,6 +107,22 @@ npm install
 ```bash
 npm start
 ```
+
+## Pricing Plans
+
+### Monthly Plan
+- **Price**: 0.59 SOL/month
+- All 3+ NFT benefits
+- 80% fee discount on Meteora tools
+- 40% discount on Olympus bot
+- Cancel anytime
+
+### Quarterly Plan (Best Value)
+- **Price**: 1.6 SOL/3 months
+- Save 10% compared to monthly
+- All monthly benefits
+- Priority support
+- Early access to new features
 
 ## Customization
 
@@ -91,11 +145,12 @@ The website uses:
 ### Sections
 The website includes:
 - Hero with animated terminal
-- Tools showcase (4 main products)
-- Benefits/Pricing tiers
+- 4 tool cards with real logos
+- Benefits/Pricing tiers (NFT holders)
+- Pricing page (NEW!)
 - Security information
 - Call-to-action
-- Footer with links
+- Horizontal footer layout
 
 ## Browser Support
 
@@ -119,11 +174,14 @@ The website includes:
 - **Bold Typography**: Large, impactful headings with Orbitron font
 - **Interactive Elements**: Hover effects and micro-interactions
 - **Dark Mode**: Default dark theme matching Web3 culture
+- **Real Branding**: Authentic product logos
 
-## Links
+## Important Links
 
-- Twitter: https://x.com/SOL_Decoder
-- Discord: (Add your Discord invite link)
+- **Discord**: https://discord.gg/7PRvrGZrVq
+- **Twitter**: https://x.com/SOL_Decoder
+- **Documentation**: https://decoder-1.gitbook.io/decoder-farmer/
+- **Subscribe**: https://blinkord.com/925207817923743794
 
 ## License
 

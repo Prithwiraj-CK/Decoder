@@ -3,6 +3,7 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Tools from './components/Tools';
 import Benefits from './components/Benefits';
+import Pricing from './components/Pricing';
 import Security from './components/Security';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
@@ -28,6 +29,7 @@ function App() {
       <Hero />
       <Tools />
       <Benefits />
+      <Pricing />
       <Security />
       <CTA />
       <Footer />
