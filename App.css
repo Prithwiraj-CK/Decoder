@@ -1266,3 +1266,33 @@ section {
         align-items: stretch;
     }
 }
+
+/* --- PASTE AT THE VERY BOTTOM OF STYLES.CSS --- */
+
+/* 1. Force buttons to the absolute top layer */
+.btn, 
+.tool-btn, 
+.nav-cta, 
+.nav-link,
+a {
+    position: relative !important;
+    z-index: 9999 !important; /* Higher than everything */
+    pointer-events: auto !important; /* Force clicks to be allowed */
+    cursor: pointer !important;
+}
+
+/* 2. Force all background effects to be un-clickable ghosts */
+.grid-overlay, 
+.glow-orb,
+.tool-card::before,
+.cta-section::before {
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+
+/* 3. Ensure the sections themselves don't trap clicks */
+section, .hero, .tools, .benefits, .pricing, .footer {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}

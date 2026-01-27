@@ -101,7 +101,8 @@ canvas.style.left = '0';
 canvas.style.width = '100%';
 canvas.style.height = '100%';
 canvas.style.pointerEvents = 'none';
-canvas.style.zIndex = '1';
+// --- CRITICAL FIX: Changed from '1' to '-1' ---
+canvas.style.zIndex = '-1'; 
 document.body.appendChild(canvas);
 
 const ctx = canvas.getContext('2d');
@@ -320,3 +321,39 @@ window.addEventListener('resize', createMobileMenu);
 createMobileMenu();
 
 console.log('🚀 SOL Decoder website loaded successfully!');
+
+// --- FINAL FIX FOR UNCLICKABLE BUTTONS ---
+// This forces all buttons to the top layer and pushes backgrounds to the bottom
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Applying button click fix...");
+    
+    const fixStyle = document.createElement('style');
+    fixStyle.innerHTML = `
+        /* Force background layers to the back */
+        .grid-overlay, .glow-orb, canvas {
+            z-index: -999 !important;
+            pointer-events: none !important;
+        }
+
+        /* Force tool card overlays to allow clicks through */
+        .tool-card::before {
+            pointer-events: none !important;
+            z-index: 0 !important;
+        }
+
+        /* Force content containers to be relative so z-index works */
+        section, .nav, .footer {
+            position: relative !important;
+            z-index: 10 !important;
+        }
+
+        /* Force buttons/links to be absolutely clickable on top */
+        .btn, .tool-btn, .nav-cta, a {
+            position: relative !important;
+            z-index: 9999 !important; /* Maximum priority */
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
+    `;
+    document.head.appendChild(fixStyle);
+});
