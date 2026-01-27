@@ -42,7 +42,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Background Effects */
+/* Background Effects - FIXED */
 .grid-overlay {
     position: fixed;
     top: 0;
@@ -53,8 +53,9 @@ body {
         linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
+    /* FIX: Changed z-index to -1 to sit behind content */
     pointer-events: none;
-    z-index: 0;
+    z-index: -1; 
     animation: gridMove 20s linear infinite;
 }
 
@@ -70,8 +71,9 @@ body {
     border-radius: 50%;
     filter: blur(100px);
     opacity: 0.2;
+    /* FIX: Changed z-index to -1 to sit behind content */
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
     animation: float 20s ease-in-out infinite;
 }
 
@@ -144,16 +146,6 @@ body {
     height: 40px;
     object-fit: contain;
     border-radius: 8px;
-}
-
-.logo-icon {
-    font-size: 32px;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.1); }
 }
 
 .logo-text {
@@ -326,6 +318,8 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    /* Ensure button is above overlays */
+    z-index: 2;
 }
 
 .btn::before {
@@ -489,12 +483,14 @@ body {
     50% { opacity: 0; }
 }
 
-/* Section Styles */
+/* Section Styles - FIXED */
 section {
     position: relative;
     padding: var(--section-padding) 40px;
     max-width: var(--container-max);
     margin: 0 auto;
+    /* FIX: Lift content above background effects */
+    z-index: 1;
 }
 
 .section-header {
@@ -536,6 +532,7 @@ section {
     overflow: hidden;
 }
 
+/* FIX: Card Overlay was blocking clicks */
 .tool-card::before {
     content: '';
     position: absolute;
@@ -546,6 +543,9 @@ section {
     background: linear-gradient(135deg, var(--glow-primary), var(--glow-accent));
     opacity: 0;
     transition: opacity 0.3s ease;
+    /* FIX: Allow clicks to pass through this overlay */
+    pointer-events: none;
+    z-index: 0; 
 }
 
 .tool-card:hover {
@@ -633,6 +633,9 @@ section {
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    /* Ensure button is clickable */
+    position: relative;
+    z-index: 2;
 }
 
 .tool-btn:hover {
@@ -863,6 +866,9 @@ section {
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    /* Ensure clickable */
+    position: relative;
+    z-index: 2;
 }
 
 .pricing-btn:hover {
@@ -1011,6 +1017,7 @@ section {
         rgba(255, 255, 255, 0.05) 20px
     );
     animation: stripesMove 20s linear infinite;
+    pointer-events: none; /* Good practice */
 }
 
 @keyframes stripesMove {
@@ -1070,6 +1077,8 @@ section {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border);
     padding: 60px 40px 30px;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-content {
