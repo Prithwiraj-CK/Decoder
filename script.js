@@ -1,3 +1,36 @@
+// Mobile Menu Toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const body = document.body;
+
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        mobileMenuOverlay.classList.toggle('active');
+        body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // Close menu when clicking overlay
+    mobileMenuOverlay.addEventListener('click', () => {
+        mobileMenuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        body.style.overflow = '';
+    });
+    
+    // Close menu when clicking a nav link
+    document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            body.style.overflow = '';
+        });
+    });
+}
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -101,8 +134,7 @@ canvas.style.left = '0';
 canvas.style.width = '100%';
 canvas.style.height = '100%';
 canvas.style.pointerEvents = 'none';
-// --- CRITICAL FIX: Changed from '1' to '-1' ---
-canvas.style.zIndex = '-1'; 
+canvas.style.zIndex = '1';
 document.body.appendChild(canvas);
 
 const ctx = canvas.getContext('2d');
@@ -321,39 +353,3 @@ window.addEventListener('resize', createMobileMenu);
 createMobileMenu();
 
 console.log('🚀 SOL Decoder website loaded successfully!');
-
-// --- FINAL FIX FOR UNCLICKABLE BUTTONS ---
-// This forces all buttons to the top layer and pushes backgrounds to the bottom
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Applying button click fix...");
-    
-    const fixStyle = document.createElement('style');
-    fixStyle.innerHTML = `
-        /* Force background layers to the back */
-        .grid-overlay, .glow-orb, canvas {
-            z-index: -999 !important;
-            pointer-events: none !important;
-        }
-
-        /* Force tool card overlays to allow clicks through */
-        .tool-card::before {
-            pointer-events: none !important;
-            z-index: 0 !important;
-        }
-
-        /* Force content containers to be relative so z-index works */
-        section, .nav, .footer {
-            position: relative !important;
-            z-index: 10 !important;
-        }
-
-        /* Force buttons/links to be absolutely clickable on top */
-        .btn, .tool-btn, .nav-cta, a {
-            position: relative !important;
-            z-index: 9999 !important; /* Maximum priority */
-            cursor: pointer !important;
-            pointer-events: auto !important;
-        }
-    `;
-    document.head.appendChild(fixStyle);
-});

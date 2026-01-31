@@ -42,7 +42,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Background Effects - FIXED */
+/* Background Effects */
 .grid-overlay {
     position: fixed;
     top: 0;
@@ -53,9 +53,8 @@ body {
         linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
-    /* FIX: Changed z-index to -1 to sit behind content */
     pointer-events: none;
-    z-index: -1; 
+    z-index: 0;
     animation: gridMove 20s linear infinite;
 }
 
@@ -71,9 +70,8 @@ body {
     border-radius: 50%;
     filter: blur(100px);
     opacity: 0.2;
-    /* FIX: Changed z-index to -1 to sit behind content */
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
     animation: float 20s ease-in-out infinite;
 }
 
@@ -148,6 +146,16 @@ body {
     border-radius: 8px;
 }
 
+.logo-icon {
+    font-size: 32px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
 .logo-text {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
@@ -214,6 +222,57 @@ body {
     box-shadow: 0 0 30px var(--glow-primary);
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.hamburger-line {
+    width: 28px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 81px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 81px);
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -265,7 +324,8 @@ body {
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 30px;
-    letter-spacing: -2px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .title-line {
@@ -273,7 +333,7 @@ body {
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
+    background: linear-gradient(90deg, #00d4ff, #00ffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -318,8 +378,6 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    /* Ensure button is above overlays */
-    z-index: 2;
 }
 
 .btn::before {
@@ -338,14 +396,15 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: var(--bg-primary);
-    box-shadow: 0 0 30px var(--glow-primary);
+    background: linear-gradient(135deg, #00ff88, #00ffff);
+    color: #000000;
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.6);
+    font-weight: 900;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 40px var(--glow-primary);
+    box-shadow: 0 5px 50px rgba(0, 255, 136, 0.8);
 }
 
 .btn-secondary {
@@ -483,14 +542,12 @@ body {
     50% { opacity: 0; }
 }
 
-/* Section Styles - FIXED */
+/* Section Styles */
 section {
     position: relative;
     padding: var(--section-padding) 40px;
     max-width: var(--container-max);
     margin: 0 auto;
-    /* FIX: Lift content above background effects */
-    z-index: 1;
 }
 
 .section-header {
@@ -532,7 +589,6 @@ section {
     overflow: hidden;
 }
 
-/* FIX: Card Overlay was blocking clicks */
 .tool-card::before {
     content: '';
     position: absolute;
@@ -543,9 +599,6 @@ section {
     background: linear-gradient(135deg, var(--glow-primary), var(--glow-accent));
     opacity: 0;
     transition: opacity 0.3s ease;
-    /* FIX: Allow clicks to pass through this overlay */
-    pointer-events: none;
-    z-index: 0; 
 }
 
 .tool-card:hover {
@@ -633,9 +686,6 @@ section {
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    /* Ensure button is clickable */
-    position: relative;
-    z-index: 2;
 }
 
 .tool-btn:hover {
@@ -866,9 +916,6 @@ section {
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    /* Ensure clickable */
-    position: relative;
-    z-index: 2;
 }
 
 .pricing-btn:hover {
@@ -1017,7 +1064,6 @@ section {
         rgba(255, 255, 255, 0.05) 20px
     );
     animation: stripesMove 20s linear infinite;
-    pointer-events: none; /* Good practice */
 }
 
 @keyframes stripesMove {
@@ -1077,8 +1123,6 @@ section {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border);
     padding: 60px 40px 30px;
-    position: relative;
-    z-index: 1;
 }
 
 .footer-content {
@@ -1201,8 +1245,48 @@ section {
 }
 
 @media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
     .nav-links {
-        gap: 20px;
+        position: fixed;
+        top: 81px;
+        right: -100%;
+        width: 280px;
+        height: calc(100vh - 81px);
+        background: var(--bg-secondary);
+        border-left: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 30px 0;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-link, .nav-cta {
+        padding: 20px 30px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        width: 100%;
+        display: block;
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+    
+    .nav-cta {
+        margin: 10px 20px;
+        width: calc(100% - 40px);
+        text-align: center;
+        border-bottom: none;
     }
     
     .nav-link {
@@ -1265,34 +1349,4 @@ section {
         flex-direction: column;
         align-items: stretch;
     }
-}
-
-/* --- PASTE AT THE VERY BOTTOM OF STYLES.CSS --- */
-
-/* 1. Force buttons to the absolute top layer */
-.btn, 
-.tool-btn, 
-.nav-cta, 
-.nav-link,
-a {
-    position: relative !important;
-    z-index: 9999 !important; /* Higher than everything */
-    pointer-events: auto !important; /* Force clicks to be allowed */
-    cursor: pointer !important;
-}
-
-/* 2. Force all background effects to be un-clickable ghosts */
-.grid-overlay, 
-.glow-orb,
-.tool-card::before,
-.cta-section::before {
-    pointer-events: none !important;
-    z-index: -1 !important;
-}
-
-/* 3. Ensure the sections themselves don't trap clicks */
-section, .hero, .tools, .benefits, .pricing, .footer {
-    position: relative !important;
-    z-index: 10 !important;
-    pointer-events: auto !important;
 }
