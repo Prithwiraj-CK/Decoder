@@ -599,6 +599,8 @@ section {
     background: linear-gradient(135deg, var(--glow-primary), var(--glow-accent));
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .tool-card:hover {
@@ -627,12 +629,15 @@ section {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1px;
+    z-index: 1;
 }
 
 .tool-icon {
     font-size: 48px;
     margin-bottom: 20px;
     display: block;
+    position: relative;
+    z-index: 1;
 }
 
 .tool-logo {
@@ -642,6 +647,8 @@ section {
     margin-bottom: 20px;
     display: block;
     border-radius: 12px;
+    position: relative;
+    z-index: 1;
 }
 
 .tool-name {
@@ -650,16 +657,22 @@ section {
     font-weight: 700;
     margin-bottom: 15px;
     color: var(--primary);
+    position: relative;
+    z-index: 1;
 }
 
 .tool-description {
     color: var(--text-secondary);
     margin-bottom: 25px;
     line-height: 1.7;
+    position: relative;
+    z-index: 1;
 }
 
 .tool-features {
     margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
 }
 
 .feature {
@@ -686,6 +699,8 @@ section {
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .tool-btn:hover {
